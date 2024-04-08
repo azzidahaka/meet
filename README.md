@@ -1,27 +1,27 @@
-#Meet App
+# Meet App
 
-##Features and Scenerios
+## Features and Scenarios
 
 - Filter Events by City.
-  - As a user, I should be able to filter events by city so that i can easily find events happening in a city
-  - Scenario: When user hasn’t searched for a city, show upcoming events from all cities.
+  - As a user, I should be able to filter events by city so that I can easily find events happening in a city
+  - Scenario: When the user hasn’t searched for a city, show upcoming events from all cities.
     - Given user is on the app's home page
-    - When user has no selected city
+    - When the user has no selected city
     - Then the user should see upcoming events from all cities
   - Scenario: User should see a list of suggestions when they search for a city.
     - Given user is on the app's home page
-    - When user starts typing in the city search field
-    - Then User should see a list of city suggestions that matches the letters they typed 
-  - Scenario: User can select a city from the suggested list
+    - When a user starts typing in the city search field
+    - Then the user should see a list of city suggestions that match the letters they typed 
+  - Scenario: The user can select a city from the suggested list
     - Given user is viewing the list of city suggestions
-    - When user selects a city
-    - Then user should see events specific to the selected city
+    - When the user selects a city
+    - Then the user should see events specific to the selected city
 - Show/Hide Event Details.
   - As a user, I should be able to show/hide event details so that I can view more/less information about the event
   - Scenario: An event element is collapsed by default.
     - Given user has a list of events displayed
     - When User cannot see additional information about events
-    - Then User should see a button that says "show details"
+    - Then the user should see a button that says "show details"
   - Scenario: User can expand an event to see details
     - Given user is viewing the list of events
     - When user clicks the "show details " button
@@ -38,26 +38,26 @@
     - Then user should see 32 events listed
   - Scenario: User can change the number of events displayed.
     - Given user is on the app's home page
-    - When user types in number of events to display
+    - When user types in the number of events to display
     - Then user should see only the specified number of events listed
 - Use the App When Offline.
-  - As a user, I should be able to access essential features of the app even when offline so that i can still use it in areas with limited connectivity.
+  - As a user, I should be able to access essential features of the app even when offline so that I can still use it in areas with limited connectivity.
   - Scenario: Show cached data when there’s no internet connection.
     - Given user has no internet connection
     - When user opens the app
     - Then user should be able to view cached event data from their last session
   - Scenario: Show error when user changes search settings (city, number of events).
-    - Given user is on home page with no internet connection
+    - Given user is on the home page with no internet connection
     - When user changes the city or number of events
-    - Then user should receive and error message indicating the need to refresh data once online
+    - Then user should receive an error message indicating the need to refresh data once online
 - Add an App Shortcut to the Home Screen.
-  - As a user, I should be able to add the app as a shortcut to my home screen so that i can easily launch it without navigating through menus.
+  - As a user, I should be able to add the app as a shortcut to my home screen so that I can easily launch it without navigating through menus.
   - Scenario: User can install the meet app as a shortcut on their device home screen
     - Given user has a mobile device
-    - When user adds the app to homescreen
+    - When user adds the app to home screen
     - Then user can see the app icon for easy access
 - Display Charts Visualizing Event Details.
-  - As a user, I should be able to view visual charts or graphs representing events data so that i can gain insights at a glance
+  - As a user, I should be able to view visual charts or graphs representing events data so that I can gain insights at a glance
   - Scenario: Show a chart with the number of upcoming events in each city.
     - Given is on the home page
     - When user hasn't selected an event
