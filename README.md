@@ -1,4 +1,6 @@
-#Features and Scenerios
+#Meet App
+
+##Features and Scenerios
 
 - Filter Events by City.
   - As a user, I should be able to filter events by city so that i can easily find events happening in a city
@@ -8,14 +10,14 @@
     - Then the user should see upcoming events from all cities
   - Scenario: User should see a list of suggestions when they search for a city.
     - Given user is on the app's home page
-    - When user type "To" in the city search field
-    - Then User should see a list of city suggestions (e.g., Tokyo, Toronto)
+    - When user starts typing in the city search field
+    - Then User should see a list of city suggestions that matches the letters they typed 
   - Scenario: User can select a city from the suggested list
     - Given user is viewing the list of city suggestions
     - When user selects a city
     - Then user should see events specific to the selected city
 - Show/Hide Event Details.
-  - As a user, I should be able to view event details so that i can view more information about the event
+  - As a user, I should be able to show/hide event details so that I can view more/less information about the event
   - Scenario: An event element is collapsed by default.
     - Given user has a list of events displayed
     - When User cannot see additional information about events
