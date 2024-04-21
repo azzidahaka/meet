@@ -31,7 +31,7 @@
     - When user clicks the "hide details " button
     - Then the event details should be hidden again
 - Specify Number of Events.
-  - As a user, I should be able to specify the number of events displayed so that i can customize the amount of information shown.
+  - As a user, I should be able to specify the number of events displayed so that I can customize the amount of information shown.
   - Scenario: When user hasn’t specified a number, 32 events are shown by default
     - Given user is on the app's home page
     - When user hasn't specified the number of events
@@ -54,7 +54,7 @@
   - As a user, I should be able to add the app as a shortcut to my home screen so that I can easily launch it without navigating through menus.
   - Scenario: User can install the meet app as a shortcut on their device home screen
     - Given user has a mobile device
-    - When user adds the app to home screen
+    - When user adds the app to the home screen
     - Then user can see the app icon for easy access
 - Display Charts Visualizing Event Details.
   - As a user, I should be able to view visual charts or graphs representing events data so that I can gain insights at a glance
@@ -62,3 +62,6 @@
     - Given is on the home page
     - When user hasn't selected an event
     - Then user should see a graphical representation of the events count per city before the lists of events
+
+## Using serverless functions
+The serverless function will be used to handle user authentication using OAuth2, communicate with Google Calendar API to fetch events, and process events in the API response which would then be rendered in the app's UI. The serverless function would be hosted on AWS Lambda and it offers benefits like scalability according to user demands and cost-efficient as only compute time used during execution is payed for.
