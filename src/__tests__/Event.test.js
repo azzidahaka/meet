@@ -11,26 +11,29 @@ describe('<Event /> component', () => {
   let allEvents;
   beforeEach(async () => {
     allEvents = await getEvents();
-    EventComponent = render(<Event />);
+    EventComponent = render(<Event data={allEvents[0]} />);
   });
 
-  test("An element for the event title", () => {
-    expect(EventComponent.queryByText('.summary')).toBeInTheDocument();
+  test('An element for the event title', () => {
+    expect(EventComponent.queryByText(allEvents[0].summary)).toBeInTheDocument();
   });
 
   test("An element for the event's start time", () => {
-    expect(EventComponent.queryByText('.created')).toBeInTheDocument();
-  });
-
-  test("An element for the event's location", () => {
-    expect(EventComponent.queryByText('.location')).toBeInTheDocument();
+    expect(EventComponent.queryByText(allEvents[0].created)).toBeInTheDocument();
   });
 
   test("renders event location",() => {
     expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
   });
 
-  test("show/hides details button",() => {
-    
+  test("renders event details button with the title (show details)",() => {
+    expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+  });
+
+  test("by, default, event's details section should be hidden",() => {
+      const showButton = EventComponent.queryByRole('button')
+      userEvent.click(showButton);
+      expect(showButton.queryByText('hide details')).toBeInTheDocument();
+
   });
 });

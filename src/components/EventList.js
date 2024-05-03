@@ -4,10 +4,10 @@ const EventList = ({ events }) => {
   return (
     <ul id='event-list'>
       {events
-        ? events.map((event) => (
+        ? events.map((eventData) => (
             <Event
-              key={event.id}
-              event={event}
+              key={eventData.id}
+              data={eventData}
             />
           ))
         : null}
