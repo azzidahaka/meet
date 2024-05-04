@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const Event = ({ data }) => {
   const [visible, setVisible] = useState(false);
-  console.log(data.description);
   return (
     <li>
       <span>{data.summary}</span>

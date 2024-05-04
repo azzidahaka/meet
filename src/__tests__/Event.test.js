@@ -30,13 +30,22 @@ describe('<Event /> component', () => {
     expect(EventComponent.queryByText('show details')).toBeInTheDocument();
   });
 
-  test("by, default, event's details section should be hidden", async () => {
+  test("show details section when user clicks on the 'show details' button", async () => {
     const showButton = EventComponent.getByRole('button', { name: /show details/i });
     expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).not.toBeInTheDocument();
     await userEvent.click(showButton);
     expect(EventComponent.getByRole('button', { name: /hide details/i })).toBeInTheDocument();
     expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).toBeInTheDocument();
-    console.log("--------------------------------------");
-    console.log(allEvents[0].description.replace(/\n/g, ''));
+  });
+
+  test("hide details section when user clicks on the 'hide details' button", async () => {
+    const showButton = EventComponent.getByRole('button', { name: /show details/i });
+    await userEvent.click(showButton);
+
+    expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).toBeInTheDocument();
+    const hideButton = EventComponent.getByRole('button', { name: /hide details/i });
+    await userEvent.click(hideButton);
+    expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).not.toBeInTheDocument();
+    expect(EventComponent.getByRole('button', { name: /show details/i })).toBeInTheDocument();
   });
 });
