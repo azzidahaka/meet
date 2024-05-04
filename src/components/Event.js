@@ -1,10 +1,15 @@
+import React, { useState } from 'react';
+
 const Event = ({ data }) => {
+  const [visible, setVisible] = useState(false);
+  console.log(data.description);
   return (
     <li>
       <span>{data.summary}</span>
       <span>{data.created}</span>
       <span>{data.location}</span>
-      <button>show details</button>
+      {visible && <div>{data.description}</div>}
+      <button onClick={() => setVisible(!visible)}>{visible ? 'hide details' : 'show details'}</button>
     </li>
   );
 };

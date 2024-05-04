@@ -22,18 +22,21 @@ describe('<Event /> component', () => {
     expect(EventComponent.queryByText(allEvents[0].created)).toBeInTheDocument();
   });
 
-  test("renders event location",() => {
+  test('renders event location', () => {
     expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
   });
 
-  test("renders event details button with the title (show details)",() => {
+  test('renders event details button with the title (show details)', () => {
     expect(EventComponent.queryByText('show details')).toBeInTheDocument();
   });
 
-  test("by, default, event's details section should be hidden",() => {
-      const showButton = EventComponent.queryByRole('button')
-      userEvent.click(showButton);
-      expect(showButton.queryByText('hide details')).toBeInTheDocument();
-
+  test("by, default, event's details section should be hidden", async () => {
+    const showButton = EventComponent.getByRole('button', { name: /show details/i });
+    expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).not.toBeInTheDocument();
+    await userEvent.click(showButton);
+    expect(EventComponent.getByRole('button', { name: /hide details/i })).toBeInTheDocument();
+    expect(EventComponent.queryByText(allEvents[0].description.replace(/\n/g, ''))).toBeInTheDocument();
+    console.log("--------------------------------------");
+    console.log(allEvents[0].description.replace(/\n/g, ''));
   });
 });
