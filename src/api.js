@@ -29,7 +29,7 @@ const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);
 
-    const response = await fetch('YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode);
+    const response = await fetch('api/token' + '/' + encodeCode);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
