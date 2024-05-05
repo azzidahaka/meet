@@ -81,6 +81,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get('code');
     if (!code) {
       const response = await fetch('api/get-auth-url');
+      console.log('hello');
       const result = await response.json();
       const { authUrl } = result;
       return (window.location.href = authUrl);
