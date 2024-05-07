@@ -5,7 +5,6 @@ const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
         type='text'
         value={currentNOE}
         onChange={(e) => {
-          console.log(`Set to ${e.target.value}`);
           setCurrentNOE(e.target.value);
         }}
       />

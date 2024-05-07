@@ -28,7 +28,6 @@ const App = () => {
     fetchData();
   }, [fetchData]);
 
-  console.log(currentNOE);
   return (
     <div className='App'>
       <CitySearch

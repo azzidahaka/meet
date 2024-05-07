@@ -61,7 +61,6 @@ describe('<NumberOfEvent /> integration', () => {
     await userEvent.type(NOEInput, '{backspace}{backspace}10');
 
     const allRenderedEventItems = await screen.findAllByRole('listitem');
-    console.log(allRenderedEventItems);
     expect(allRenderedEventItems.length).toBe(10);
   });
 });
