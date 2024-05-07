@@ -5,9 +5,9 @@ const Event = ({ data }) => {
   // console.log('data', data);
   return (
     <li className='event'>
-      <span>{data.summary}</span>
-      <span>{data.created}</span>
-      <span>{data.location}</span>
+        <h2>{data && data.summary}</h2>
+      <p>{data && data.location}</p>
+      <p>{data && (new Date(data.created)).toUTCString()}</p>
       {visible && <div>{data.description}</div>}
       <button
         className='details-btn'
