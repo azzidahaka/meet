@@ -30,10 +30,7 @@ describe('<NumberOfEvent /> component', () => {
 
   test('number of event input changes on userevent', async () => {
     const numberTextBox = NumberOfEventComponent.queryByRole('textbox');
-    fireEvent.change(numberTextBox, { target: { value: '22' } });// used fire event since user event is unable to simulate user deleting and adding 22
-    // userEvent.clear(numberTextBox);
+    fireEvent.change(numberTextBox, { target: { value: '22' } }); // used fire event since user event is unable to simulate user deleting and adding 22
     expect(mockSetCurrentNOE).toHaveBeenCalledWith('22');
-    // await userEvent.type(numberTextBox, '{backspace}{backspace}10');
-    // expect(numberTextBox.value).toBe('10');
   });
 });

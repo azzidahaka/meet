@@ -4,12 +4,16 @@ const Event = ({ data }) => {
   const [visible, setVisible] = useState(false);
   // console.log('data', data);
   return (
-    <li>
+    <li className='event'>
       <span>{data.summary}</span>
       <span>{data.created}</span>
       <span>{data.location}</span>
       {visible && <div>{data.description}</div>}
-      <button onClick={() => setVisible(!visible)}>{visible ? 'hide details' : 'show details'}</button>
+      <button
+        className='details-btn'
+        onClick={() => setVisible(!visible)}>
+        {visible ? 'hide details' : 'show details'}
+      </button>
     </li>
   );
 };
