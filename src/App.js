@@ -28,14 +28,21 @@ const App = () => {
     fetchData();
   }, [currentCity, fetchData, allLocations]);
 
+  
   return (
     <div className='App'>
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={setCurrentCity}
       />
-      <NumberOfEvents />
-      <EventList events={events} />
+      <NumberOfEvents
+        currentNOE={currentNOE}
+        setCurrentNOE={setCurrentNOE}
+      />
+      <EventList
+        events={events}
+        currentNOE={currentNOE}
+      />
     </div>
   );
 };

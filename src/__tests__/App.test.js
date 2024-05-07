@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/render-result-naming-convention */
 /* eslint-disable testing-library/no-node-access */
-import { render, within, screen, act, waitFor } from '@testing-library/react';
+import { render, within, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
@@ -35,19 +35,33 @@ describe('<App /> integration', () => {
     const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
     await userEvent.type(CitySearchInput, 'Berlin');
-    const berlinSuggestionItem = await waitFor(() => within(CitySearchDOM).queryByText('Berlin, Germany'));
+    const berlinSuggestionItem = screen.getByText('Berlin, Germany');
 
-    // console.log('CitySearchInput', CitySearchDOM);
     await userEvent.click(berlinSuggestionItem);
 
-    const EventListDOM = AppDOM.querySelector('#event-list');
-    const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
-
+    const allRenderedEventItems = await screen.findAllByRole('listitem');
     const allEvents = await getEvents();
     const berlinEvents = allEvents.filter((event) => event.location === 'Berlin, Germany');
 
+    expect(allRenderedEventItems.length).toBe(berlinEvents.length);
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain('Berlin, Germany');
     });
+  });
+});
+
+describe('<NumberOfEvent /> integration', () => {
+  test('number of events integration', async () => {
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    const NumberOfEventDOM = AppDOM.querySelector('#number-of-events');
+    const NOEInput = within(NumberOfEventDOM).queryByRole('textbox');
+
+    await userEvent.type(NOEInput, '{backspace}{backspace}10');
+
+    const allRenderedEventItems = await screen.findAllByRole('listitem');
+    console.log(allRenderedEventItems);
+    expect(allRenderedEventItems.length).toBe(10);
   });
 });
