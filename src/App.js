@@ -26,9 +26,9 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
-  }, [currentCity, fetchData, allLocations]);
+  }, [fetchData]);
 
-  
+  console.log(currentNOE);
   return (
     <div className='App'>
       <CitySearch
