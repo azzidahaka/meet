@@ -1,5 +1,40 @@
 import puppeteer from 'puppeteer';
 
+describe('Filter events by city', () => {
+  let browser;
+  let page;
+
+  beforeAll(async () => {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+    await page.goto('http://localhost:3000');
+    await page.waitForSelector('.event');
+  });
+
+  afterAll(() => {
+    browser.close();
+  });
+
+  test('When user hasn’t searched for a city, show upcoming events from all cities', async () => {
+    const events = await page.$$('.event');
+    expect(events.length).toBeGreaterThan(0);
+  });
+
+  test('User should see a list of suggestions when they search for a city', async () => {
+    await page.type('.city', 'Berlin');
+    const suggestions = await page.$$('.suggestions li');
+    expect(suggestions.length).toBeGreaterThan(1);
+  });
+
+  test('User can select a city from the suggested list', async () => {
+    await page.click('.suggestions li:nth-child(1)');
+    const city = await page.$eval('.city', (el) => el.value);
+    expect(city).toBe('Berlin, Germany');
+    const events = await page.$$('.event');
+    expect(events.length).toBeGreaterThan(0);
+  });
+});
+
 describe('show/hide event details', () => {
   let browser;
   let page;
