@@ -1,3 +1,4 @@
+/* eslint-disable jest/valid-expect */
 /* eslint-disable testing-library/prefer-presence-queries */
 /* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/no-render-in-setup */
@@ -46,38 +47,55 @@ defineFeature(feature, (test) => {
     let EventListItems;
     let Event;
     given('user is viewing the list of events', async () => {
-    //   AppComponent = render(<App />);
-    //   AppDOM = AppComponent.container.firstChild;
-    //   EventListDOM = AppDOM.querySelector('#event-list');
-    //   await waitFor(() => {
-    //     EventListItems = within(EventListDOM).queryAllByRole('listitem');
-    //     expect(EventListItems.length).toBe(32);
-    //   });
+      AppComponent = render(<App />);
+      AppDOM = AppComponent.container.firstChild;
+      EventListDOM = AppDOM.querySelector('#event-list');
+      await waitFor(() => {
+        EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });
     });
 
     when('user clicks the "show details " button', async () => {
-    //   const showButton = EventListItems[0].querySelector('.details-btn');
-    //   await userEvent.click(showButton);
+      const showButton = EventListItems[0].querySelector('.details-btn');
+      await userEvent.click(showButton);
     });
 
     then('the event details section becomes visible', () => {
-    //   Event = within(EventListItems[0]).queryByText(allEvents[0].description.replace(/\n/g, ''));
-    //   expect(Event).toBeInTheDocument();
+      Event = within(EventListItems[0]).queryByText(allEvents[0].description.replace(/\n/g, ''));
+      expect(Event).toBeInTheDocument();
     });
   });
 
   test('User can collapse an event to hide details.', ({ given, when, then }) => {
-    given('user is can see details about an event', () => {
-      //   fireEvent.click(EventComponent('show details'));
-      //   expect(EventComponent('Test Description')).not.toBeNull();
+    let AppComponent;
+    let AppDOM;
+    let EventListDOM;
+    let EventListItems;
+    let Event;
+
+    given('user can see details about an event', async () => {
+      AppComponent = render(<App />);
+      AppDOM = AppComponent.container.firstChild;
+      EventListDOM = AppDOM.querySelector('#event-list');
+      await waitFor(() => {
+        EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });
+      const showButton = EventListItems[0].querySelector('.details-btn');
+      await userEvent.click(showButton);
+      Event = within(EventListItems[0]).queryByText(allEvents[0].description.replace(/\n/g, ''));
     });
 
-    when('user clicks the "hide details " button', () => {
-      //   fireEvent.click(EventComponent('hide details'));
+    when('user clicks the "hide details " button', async () => {
+      const hideButton = EventListItems[0].querySelector('.details-btn');
+      await userEvent.click(hideButton);
+
     });
 
     then('the event details should be hidden again', () => {
-      //   expect(EventComponent('Test Description')).toBeNull();
+      expect(Event).not.toBeInTheDocument();
+      expect(within(EventListItems[0]).queryByText('hide details'));
     });
   });
 });

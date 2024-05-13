@@ -10,6 +10,6 @@ Feature: Show/Hide Event Details
    Then the event details section becomes visible
 
  Scenario: User can collapse an event to hide details.
-   Given user is can see details about an event
+   Given user can see details about an event
    When user clicks the "hide details " button
    Then the event details should be hidden again
