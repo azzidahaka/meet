@@ -15,6 +15,7 @@ describe('<NumberOfEvent /> component', () => {
       <NumberOfEvents
         currentNOE={32}
         setCurrentNOE={mockSetCurrentNOE}
+        setErrorAlert={() => {}}
       />
     );
   });
