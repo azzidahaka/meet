@@ -1,6 +1,8 @@
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 import { useCallback, useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
@@ -54,6 +56,14 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
+      <div className='charts-container'>
+        <CityEventsChart
+          allLocations={allLocations}
+          events={events}
+        />
+        <EventGenresChart events={events} />
+      </div>
+
       <EventList
         events={events}
         currentNOE={currentNOE}
